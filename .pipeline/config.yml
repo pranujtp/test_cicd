@@ -4,6 +4,8 @@ general:
 service:
   buildToolVersion: "MBTJ17N18"
   stages:
+    Acceptance:
+      cfCredentialsId: "testdeploy"
     Release:
       cfCredentialsId: "testdeploy"
 stages:
@@ -11,30 +13,31 @@ stages:
     mavenExecuteStaticCodeChecks: false
     npmExecuteLint: false
   Acceptance:
-    cloudFoundryDeploy: false
+    cfApiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"
+    cfOrg: " 15ee199btrial"
+    cfSpace: "dev"
+    deployType: "standard"
+    cloudFoundryDeploy: true
     npmExecuteEndToEndTests: false
   Malware Scan:
     malwareExecuteScan: true
   Release:
-    tmsExport: true
-    tmsUpload: false
+    tmsExport: false
+    tmsUpload: true
     cfApiEndpoint: "https://api.cf.us10-001.hana.ondemand.com"
-    cfOrg: "15ee199btrial"
+    cfOrg: " 15ee199btrial"
     cfSpace: "dev"
     deployType: "standard"
     cloudFoundryDeploy: true
   Additional Unit Tests:
-    npmExecuteScripts: true
+    npmExecuteScripts: false
   Compliance:
     sonarExecuteScan: false
 steps:
   cloudFoundryDeploy:
     mtaDeployParameters: "-f --version-rule ALL"
-  tmsExport:
+  tmsUpload:
     nodeName: "qa"
     credentialsId: "ctmcredential"
-  npmExecuteScripts:
-    runScripts:
-    - "test"
   artifactPrepareVersion:
     versioningType: "cloud_noTag"
