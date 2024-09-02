@@ -11,16 +11,11 @@ build-parameters:
       commands:
       
         - npm install
-        - npm install --production
+        - npm clean-install --production
         - npx -p @sap/cds-dk cds build --production
         - npm update --package-lock-only
-        - npm install @Former Member-cloud-sdk/http-client
-        - npx -p @Former Member/cds-dk cds build --production
-        - npm clean-install --production
-
+        - npm install @sap-cloud-sdk/http-client
         
-        
-
 modules:
   # ---------------- DATABASE DEPLOYER MODULE ------------------
   - name: app-db-deployer
