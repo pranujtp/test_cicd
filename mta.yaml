@@ -10,13 +10,13 @@ build-parameters:
     - builder: custom
       commands:
       
+        - npm install
         - npm install --production
         - npx -p @sap/cds-dk cds build --production
         - npm update --package-lock-only
         - npm install @Former Member-cloud-sdk/http-client
         - npx -p @Former Member/cds-dk cds build --production
-        - npm install
-            - npm clean-install --production
+        - npm clean-install --production
 
         
         
