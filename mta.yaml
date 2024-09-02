@@ -9,12 +9,7 @@ build-parameters:
   before-all:
     - builder: custom
       commands:
-      
-        - npm install
-        - npm clean-install --production
         - npx -p @sap/cds-dk cds build --production
-        - npm update --package-lock-only
-        - npm install @sap-cloud-sdk/http-client
         
 modules:
   # ---------------- DATABASE DEPLOYER MODULE ------------------
